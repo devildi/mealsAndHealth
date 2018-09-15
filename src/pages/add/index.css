@@ -1,0 +1,11 @@
+.index {
+	height: 100%;
+	width: 100%;
+	padding: 10px;
+}
+.btn {
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+	right: 5px;
+}
