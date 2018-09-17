@@ -2,26 +2,12 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { AtTabBar, AtCard, AtTag } from 'taro-ui'
-import { add, minus, asyncAdd } from '../../actions/counter'
+import { actionCreators } from './store';
 
 import CardMe from '../../components/card/index'
 
 import './index.css'
 
-
-@connect(({ counter }) => ({
-  counter
-}), (dispatch) => ({
-  add () {
-    dispatch(add())
-  },
-  dec () {
-    dispatch(minus())
-  },
-  asyncAdd () {
-    dispatch(asyncAdd())
-  }
-}))
 class Index extends Component {
 
     config = {
@@ -38,34 +24,37 @@ class Index extends Component {
 
   componentDidHide () { }
 
-  handleClick(i){
-    console.log(i)
-    // Taro.navigateTo({
-    //   url: '/pages/add/index'
-    // })
-  }
-
   render () {
     return (
       <View className='index'>
-        <CardMe />
-        <CardMe />
-        <CardMe />
-        <CardMe />
-        <CardMe />
+        {this.props.current === 0 && <CardMe />}
         <AtTabBar
           fixed
           tabList={[
-            { title: '待办事项', iconType: 'bullet-list' },
-            { title: '拍照', iconType: 'camera' },
-            { title: '文件夹', iconType: 'folder'}
+            { title: '今日状态', iconType: 'bullet-list' },
+            { title: '记录', iconType: 'camera' },
+            { title: '统计', iconType: 'folder'}
           ]}
-          onClick={this.handleClick.bind(this)}
-          current={this.state.current}
+          onClick={this.props.handleClick}
+          current={this.props.current}
         />
       </View>
     )
   }
 }
 
-export default Index
+const mapState = ({indexReducer}) => {
+  return {
+    current: indexReducer.get('current')
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    handleClick(i){
+      dispatch(actionCreators.changeTab(i))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(Index)
