@@ -18,27 +18,12 @@ class Index extends Component {
 
   onClick(){
     console.log('777')
-    
   }
 
   render () {
     return (
-      <View className='card'>
-	      <AtCard
-	        className='card'
-	        extra='额外信息'
-	        title='早餐'
-	      >
-	        <AtTag 
-	          active={true}
-	          name='tag-1' 
-	          type='primary' 
-	          circle 
-	          onClick={this.onClick.bind(this)}
-	        >
-	          tag-1
-	        </AtTag>
-	      </AtCard>
+      <View className='btn'>
+	      
       </View>
     )
   }
