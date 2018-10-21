@@ -7,7 +7,7 @@ import './index.css'
 class Index extends Component {
 
   componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
+    //console.log(this.props, nextProps)
   }
 
   componentWillUnmount () { }
@@ -26,8 +26,8 @@ class Index extends Component {
       <View className='card'>
 	      <AtCard
 	        className='card'
-	        extra='额外信息'
 	        title='早餐'
+	        thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1500446507/bergrb_qa6kz6.png'
 	      >
 	        <AtTag 
 	          active={true}

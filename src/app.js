@@ -8,14 +8,20 @@ import configStore from './store'
 
 import './app.css'
 
+if (process.env.TARO_ENV === "weapp") {
+  require("taro-ui/dist/weapp/css/index.css")
+} else if (process.env.TARO_ENV === "h5") {
+  require("taro-ui/dist/h5/css/index.css")
+}
+
 const store = configStore()
 
 class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index',
-      'pages/add/index'
+      'pages/add/index',
+      'pages/index/index'
     ],
     window: {
       backgroundTextStyle: 'light',

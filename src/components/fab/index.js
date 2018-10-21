@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { AtTabBar, AtCard, AtTag } from 'taro-ui'
+import { AtTabBar, AtCard, AtTag, AtIcon } from 'taro-ui'
 
 import './index.css'
 
@@ -16,14 +16,18 @@ class Index extends Component {
 
   componentDidHide () { }
 
-  onClick(){
-    console.log('777')
+  handleClick(){
+    Taro.navigateTo({
+      url: '/pages/add/index'
+    })
   }
 
   render () {
     return (
-      <View className='btn'>
-	      
+      <View className='btn' onClick={this.handleClick.bind(this)}>
+        <View className='btn1'>
+          <AtIcon value='add-circle' size='70' ></AtIcon>
+        </View>
       </View>
     )
   }

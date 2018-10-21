@@ -1,6 +1,6 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "myApp",
+	"projectname": "mealsAndHealth",
 	"description": "个人身体状态管理",
 	"appid": "touristappid",
 	"setting": {

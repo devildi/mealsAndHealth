@@ -1,0 +1,10 @@
+.picker {
+	display: flex;
+	justify-content: space-between;
+}
+.container {
+	padding: 20px;
+}
+.cardContainer {
+	padding-bottom: 20px;
+}

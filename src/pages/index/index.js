@@ -2,9 +2,10 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { AtTabBar, AtCard, AtTag } from 'taro-ui'
-import { actionCreators } from './store';
+import { actionCreators } from './store'
 
-import CardMe from '../../components/card/index'
+import First from '../first'
+import Secend from '../secend'
 
 import './index.css'
 
@@ -27,13 +28,14 @@ class Index extends Component {
   render () {
     return (
       <View className='index'>
-        {this.props.current === 0 && <CardMe />}
+        {this.props.current === 0 && <First />}
+        {this.props.current === 1 && <Secend />}
         <AtTabBar
           fixed
           tabList={[
-            { title: '今日状态', iconType: 'bullet-list' },
-            { title: '记录', iconType: 'camera' },
-            { title: '统计', iconType: 'folder'}
+            { title: '今日状态', iconType: 'edit' },
+            { title: '历史记录', iconType: 'bullet-list' },
+            { title: '看一看', iconType: 'eye'}
           ]}
           onClick={this.props.handleClick}
           current={this.props.current}
