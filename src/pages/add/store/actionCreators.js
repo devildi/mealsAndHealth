@@ -1,12 +1,12 @@
 import * as constants from './constants';
 import { fromJS } from 'immutable';
 
-export const pickBigItem = (obj) => ({
+export const pickBigItem = (obj, s) => ({
 	type: constants.PICK_BIG,
-	date: obj
+	data: obj,
+	flag: s
 })
 
-export const pickSmallItem = (obj) => ({
-	type: constants.PICK_BIG,
-	date: obj
-});
+export const saveItem = (obj) => ({
+	type: SAVE_ITEM
+})

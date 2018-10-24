@@ -11,7 +11,7 @@ import './index.css'
 
 class Index extends Component {
 
-    config = {
+  config = {
     navigationBarTitleText: '记录我的健康'
   }
 
@@ -47,7 +47,7 @@ class Index extends Component {
 
 const mapState = ({indexReducer}) => {
   return {
-    current: indexReducer.get('current')
+    current: indexReducer.current
   }
 }
 

@@ -18,7 +18,7 @@ class Index extends Component {
               当前选择:
             </View>
             <View>
-              {this.props.dateSel === '' ? '点击此处选择日期' : this.props.dateSel}
+              {this.props.dateSel === '' ? '选择日期' : this.props.dateSel}
             </View>
           </View>
           <Div />
@@ -54,7 +54,7 @@ class Index extends Component {
 
 const mapState = ({secondReducer}) => {
   return {
-  	dateSel: secondReducer.get('dateSel')
+  	dateSel: secondReducer.dateSel
   }
 }
 

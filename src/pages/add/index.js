@@ -28,6 +28,7 @@ class Index extends Component {
   componentDidHide () { }
 
   render () {
+    //console.log(this.props.arr3)
     return (
       <View className='index'>
         <View className='at-row at-row--wrap'>
@@ -64,7 +65,12 @@ class Index extends Component {
         }
         </View>
         <View className='btn'>
-          <AtButton type='primary'>保存</AtButton>
+          <AtButton 
+            type='primary'
+            onClick={this.props.save}
+          >
+          保存
+          </AtButton>
         </View>
       </View>
     )
@@ -73,20 +79,23 @@ class Index extends Component {
 
 const mapState = ({addReducer}) => {
   return {
-    arr1: addReducer.get('arr1').toJS(),
-    arr2: addReducer.get('arr2').toJS()
+    arr1: addReducer.arr1,
+    arr2: addReducer.arr2,
+    arr3: addReducer.selected
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    pickBigItem(row){
-      console.log(row)
-      dispatch(actionCreators.pickBigItem(row))
-    },
-    pickSmallItem(obj){
+    pickBigItem(obj){
       console.log(obj)
       dispatch(actionCreators.pickBigItem(obj))
+    },
+    pickSmallItem(obj){
+      dispatch(actionCreators.pickBigItem(obj,'1'))
+    },
+    save(){
+      dispatch(actionCreators.saveItem())
     }
   }
 }
