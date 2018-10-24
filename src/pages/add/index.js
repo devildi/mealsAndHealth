@@ -88,7 +88,7 @@ const mapState = ({addReducer}) => {
 const mapDispatch = (dispatch) => {
   return {
     pickBigItem(obj){
-      console.log(obj)
+      //console.log(obj)
       dispatch(actionCreators.pickBigItem(obj))
     },
     pickSmallItem(obj){
