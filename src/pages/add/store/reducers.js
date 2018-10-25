@@ -67,20 +67,17 @@ let smallItems = [
 }
 ]
 
-
-
 const defaultState = {
 	arr1: bigItems,
 	arr2: smallItems,
-	selected: []
+  selected: [],
+	statusOfToast: false
 }
 
-const choose = (action, state) => {
+const choose = (action, state, array, bigItem) => {
 
 	let newArr = action.flag ? [...state.arr2] : [...state.arr1]
 	let newObj = {...action.data, active: !action.data.active, dis: ''}
-	let bigItem = null
-	let array = []
 
   if(!action.flag){
   	let position = null
@@ -107,18 +104,14 @@ const choose = (action, state) => {
   	if(!position){
   		newArr.splice(my, 1, newObj)
   	}
-
-  	bigItem = newObj
-   
+  	bigItem = newObj.active ? newObj : null
   } else{
   	newArr.map((r, i) => {
 	  	if(r.name === action.data.name){
 	  		newArr.splice(i, 1, newObj)
 
 	  		if(!action.data.active){
-	  			console.log(newObj)
 	  			array.push(newObj)
-	  			console.log(array)
 	  		} else {
 	  			array.map((r, i)=> {
 	  				if(r.name === action.data.name){
@@ -131,16 +124,21 @@ const choose = (action, state) => {
   }
   return {
   	newArr,
-  	array: [bigItem, ...array]
+  	array1: array,
+  	bigItem
   }
 }
 
 export default (state = defaultState, action) => {
 	switch(action.type) {
 		case constants.PICK_BIG:
-		  let {newArr, array} = choose(action, state)
-		  //console.log(array)
-			return action.flag ? {...state, arr2: [...newArr]} : {...state, arr1: [...newArr]}
+			let obj = state.selected[0]
+			let array = [...state.selected]
+			array.splice(0, 1)
+		  let {newArr, array1, bigItem}= choose(action, state, array, obj)
+			return action.flag 
+			? {...state, arr2: [...newArr], selected: [bigItem, ...array]} 
+			: {...state, arr1: [...newArr], selected: [bigItem, ...array]}
 		default:
 			return state;
 	}

@@ -5,6 +5,7 @@ import { toJS } from 'immutable'
 
 import CardMe from '../../components/card/index'
 import Div from '../../components/division'
+import Toast from '../../components/toast'
 
 import { connect } from '@tarojs/redux'
 import { actionCreators } from './store'
@@ -12,13 +13,20 @@ import { actionCreators } from './store'
 import './index.css'
 
 class Index extends Component {
-
+  constructor () {
+    super ()
+    this.state = {
+     arrForSave: []
+    }
+  }
   config = {
     navigationBarTitleText: '记录'
   }
 
   componentWillReceiveProps (nextProps) {
-    //console.log(this.props, nextProps)
+    this.setState({
+      arrForSave: nextProps.arr3
+    })
   }
 
   componentWillUnmount () { }
@@ -27,8 +35,15 @@ class Index extends Component {
 
   componentDidHide () { }
 
+  save(){
+    let s = JSON.stringify(this.state.arrForSave)
+    Taro.navigateBack({
+      array: this.state.arrForSave
+    })
+    //this.props.save(this.state.arrForSave)
+  }
+
   render () {
-    //console.log(this.props.arr3)
     return (
       <View className='index'>
         <View className='at-row at-row--wrap'>
@@ -67,11 +82,12 @@ class Index extends Component {
         <View className='btn'>
           <AtButton 
             type='primary'
-            onClick={this.props.save}
+            onClick={this.save.bind(this)}
           >
           保存
           </AtButton>
         </View>
+        <Toast isOpen={this.props.status}/>
       </View>
     )
   }
@@ -81,21 +97,24 @@ const mapState = ({addReducer}) => {
   return {
     arr1: addReducer.arr1,
     arr2: addReducer.arr2,
-    arr3: addReducer.selected
+    arr3: addReducer.selected,
+    status: addReducer.statusOfToast
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
     pickBigItem(obj){
-      //console.log(obj)
       dispatch(actionCreators.pickBigItem(obj))
     },
     pickSmallItem(obj){
       dispatch(actionCreators.pickBigItem(obj,'1'))
     },
-    save(){
-      dispatch(actionCreators.saveItem())
+    save(arr){
+      if(!arr[0]){
+        return console.log('有项未选！')
+      }
+      dispatch(actionCreators.saveItem(arr))
     }
   }
 }

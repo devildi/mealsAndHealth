@@ -19,6 +19,10 @@ class Index extends Component {
     console.log(this.props, nextProps)
   }
 
+  componentWillMount () {
+    //let array = JSON.parse(this.$router.params.array)
+  }
+
   componentWillUnmount () { }
 
   componentDidShow () { }
@@ -28,7 +32,7 @@ class Index extends Component {
   render () {
     return (
       <View className='index'>
-        {this.props.current === 0 && <First />}
+        {this.props.current === 0 && <First item={this.$router.params.array}/>}
         {this.props.current === 1 && <Secend />}
         <AtTabBar
           fixed

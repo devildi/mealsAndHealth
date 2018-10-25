@@ -6,16 +6,6 @@ import './index.css'
 
 class Index extends Component {
 
-  componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
-  }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
   handleClick(){
     Taro.navigateTo({
       url: '/pages/add/index'
@@ -26,7 +16,7 @@ class Index extends Component {
     return (
       <View className='btn' onClick={this.handleClick.bind(this)}>
         <View className='btn1'>
-          <AtIcon value='add-circle' size='70' ></AtIcon>
+          <AtIcon value='add' size='100' ></AtIcon>
         </View>
       </View>
     )

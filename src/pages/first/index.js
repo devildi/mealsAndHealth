@@ -5,6 +5,7 @@ import { actionCreators } from './store';
 
 import CardMe from '../../components/card/index'
 import Fab from '../../components/fab/index'
+import Blc from '../../components/block/index'
 
 import './index.css'
 
@@ -15,37 +16,55 @@ class Index extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    //console.log(this.props, nextProps)
+    //console.log(nextProps)
   }
 
   componentWillUnmount () { }
 
   componentDidShow () { }
 
+  componentDidMount () {
+    this.props.getData()
+  }
+
   componentDidHide () { }
 
   render () {
     return (
       <View className='index'>
-        <CardMe />
-        <CardMe />
-        <CardMe />
-        <CardMe />
-        <Fab />
+        {this.props.breakfast && <CardMe />}
+        {this.props.lunch && <CardMe />}
+        {this.props.supper && <CardMe />}
+        {this.props.dessert && <CardMe />}
+        {this.props.status && <CardMe />}
+        {this.props.exercise && <CardMe />}
+        {
+          this.props.breakfast || this.props.lunch || this.props.supper || this.props.dessert || this.props.status || this.props.exercise
+          ? <Fab />
+          : <Blc />
+        }
       </View>
     )
   }
 }
 
-const mapState = ({indexReducer}) => {
+const mapState = ({firstReducer}) => {
   return {
-    
+    breakfast: firstReducer.breakfast,
+    lunch: firstReducer.lunch,
+    supper: firstReducer.supper,
+    dessert: firstReducer.dessert,
+    status: firstReducer.status,
+    exercise: firstReducer.exercise
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    
+    getData(){
+      console.log('获取数据')
+      dispatch(actionCreators.getData())
+    }
   }
 }
 

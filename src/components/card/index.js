@@ -18,7 +18,6 @@ class Index extends Component {
 
   onClick(){
     console.log('777')
-    
   }
 
   render () {
@@ -26,7 +25,7 @@ class Index extends Component {
       <View className='card'>
 	      <AtCard
 	        className='card'
-	        title='早餐'
+	        title='早饭'
 	        thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1500446507/bergrb_qa6kz6.png'
 	      >
 	        <AtTag 
