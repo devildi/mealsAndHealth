@@ -37,9 +37,8 @@ class Index extends Component {
 
   save(){
     let s = JSON.stringify(this.state.arrForSave)
-    Taro.navigateBack({
-      array: this.state.arrForSave
-    })
+    
+    Taro.navigateBack()
     //this.props.save(this.state.arrForSave)
   }
 
