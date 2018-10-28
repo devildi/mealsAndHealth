@@ -1,48 +1,58 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
-import { AtButton, AtTag } from 'taro-ui'
-import { toJS } from 'immutable'
+import Taro, {
+  Component
+} from '@tarojs/taro'
+import {
+  View
+} from '@tarojs/components'
+import {
+  AtButton,
+  AtTag
+} from 'taro-ui'
+import {
+  toJS
+} from 'immutable'
 
 import CardMe from '../../components/card/index'
 import Div from '../../components/division'
 import Toast from '../../components/toast'
 
-import { connect } from '@tarojs/redux'
-import { actionCreators } from './store'
+import {
+  connect
+} from '@tarojs/redux'
+import {
+  actionCreators
+} from './store'
 
 import './index.css'
 
 class Index extends Component {
-  constructor () {
-    super ()
+  constructor() {
+    super()
     this.state = {
-     arrForSave: []
+      arrForSave: []
     }
   }
   config = {
     navigationBarTitleText: '记录'
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       arrForSave: nextProps.arr3
     })
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount() {}
 
-  componentDidShow () { }
+  componentDidShow() {}
 
-  componentDidHide () { }
+  componentDidHide() {}
 
-  save(){
-    let s = JSON.stringify(this.state.arrForSave)
-    
-    Taro.navigateBack()
-    //this.props.save(this.state.arrForSave)
+  save() {
+    this.props.save(this.state.arrForSave)
   }
 
-  render () {
+  render() {
     return (
       <View className='index'>
         <View className='at-row at-row--wrap'>
@@ -92,7 +102,9 @@ class Index extends Component {
   }
 }
 
-const mapState = ({addReducer}) => {
+const mapState = ({
+  addReducer
+}) => {
   return {
     arr1: addReducer.arr1,
     arr2: addReducer.arr2,
@@ -103,14 +115,14 @@ const mapState = ({addReducer}) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    pickBigItem(obj){
+    pickBigItem(obj) {
       dispatch(actionCreators.pickBigItem(obj))
     },
-    pickSmallItem(obj){
-      dispatch(actionCreators.pickBigItem(obj,'1'))
+    pickSmallItem(obj) {
+      dispatch(actionCreators.pickBigItem(obj, '1'))
     },
-    save(arr){
-      if(!arr[0]){
+    save(arr) {
+      if (!arr[0]) {
         return console.log('有项未选！')
       }
       dispatch(actionCreators.saveItem(arr))

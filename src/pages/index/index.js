@@ -1,8 +1,19 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
-import { AtTabBar, AtCard, AtTag } from 'taro-ui'
-import { actionCreators } from './store'
+import Taro, {
+  Component
+} from '@tarojs/taro'
+import {
+  View
+} from '@tarojs/components'
+import {
+  connect
+} from '@tarojs/redux'
+import {
+  AtTabBar,
+  AtCard
+} from 'taro-ui'
+import {
+  actionCreators
+} from './store'
 
 import First from '../first'
 import Secend from '../secend'
@@ -15,24 +26,24 @@ class Index extends Component {
     navigationBarTitleText: '记录我的健康'
   }
 
-  componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
+  componentWillReceiveProps(nextProps) {
+    //console.log(this.props, nextProps)
   }
 
-  componentWillMount () {
+  componentWillMount() {
     //let array = JSON.parse(this.$router.params.array)
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount() {}
 
-  componentDidShow () { }
+  componentDidShow() {}
 
-  componentDidHide () { }
+  componentDidHide() {}
 
-  render () {
+  render() {
     return (
       <View className='index'>
-        {this.props.current === 0 && <First item={this.$router.params.array}/>}
+        {this.props.current === 0 && <First />}
         {this.props.current === 1 && <Secend />}
         <AtTabBar
           fixed
@@ -49,7 +60,9 @@ class Index extends Component {
   }
 }
 
-const mapState = ({indexReducer}) => {
+const mapState = ({
+  indexReducer
+}) => {
   return {
     current: indexReducer.current
   }
@@ -57,7 +70,7 @@ const mapState = ({indexReducer}) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleClick(i){
+    handleClick(i) {
       dispatch(actionCreators.changeTab(i))
     }
   }

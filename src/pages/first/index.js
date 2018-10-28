@@ -1,7 +1,15 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
-import { actionCreators } from './store';
+import Taro, {
+  Component
+} from '@tarojs/taro'
+import {
+  View
+} from '@tarojs/components'
+import {
+  connect
+} from '@tarojs/redux'
+import {
+  actionCreators
+} from './store';
 
 import CardMe from '../../components/card/index'
 import Fab from '../../components/fab/index'
@@ -15,29 +23,29 @@ class Index extends Component {
     navigationBarTitleText: '记录我的健康'
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     //console.log(nextProps)
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount() {}
 
-  componentDidShow () { }
+  componentDidShow() {}
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.getData()
   }
 
-  componentDidHide () { }
+  componentDidHide() {}
 
-  render () {
+  render() {
     return (
       <View className='index'>
-        {this.props.breakfast && <CardMe />}
-        {this.props.lunch && <CardMe />}
-        {this.props.supper && <CardMe />}
-        {this.props.dessert && <CardMe />}
-        {this.props.status && <CardMe />}
-        {this.props.exercise && <CardMe />}
+        {this.props.breakfast.length > 0 && <CardMe items={this.props.breakfast}/>}
+        {this.props.lunch.length > 0 && <CardMe items={this.props.lunch}/>}
+        {this.props.supper.length > 0 && <CardMe items={this.props.supper}/>}
+        {this.props.dessert.length > 0 && <CardMe items={this.props.dessert}/>}
+        {this.props.status.length > 0 && <CardMe items={this.props.status}/>}
+        {this.props.exercise.length > 0 && <CardMe items={this.props.exercise}/>}
         {
           this.props.breakfast || this.props.lunch || this.props.supper || this.props.dessert || this.props.status || this.props.exercise
           ? <Fab />
@@ -48,7 +56,9 @@ class Index extends Component {
   }
 }
 
-const mapState = ({firstReducer}) => {
+const mapState = ({
+  firstReducer
+}) => {
   return {
     breakfast: firstReducer.breakfast,
     lunch: firstReducer.lunch,
@@ -61,8 +71,7 @@ const mapState = ({firstReducer}) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    getData(){
-      console.log('获取数据')
+    getData() {
       dispatch(actionCreators.getData())
     }
   }

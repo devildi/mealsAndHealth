@@ -1,13 +1,25 @@
 import * as constants from './constants'
 
 const defaultState = {
-	current: 0
+	breakfast: [],
+	lunch: [],
+	supper: [],
+	dessert: [],
+	status: [],
+	exercise: []
 }
 
 export default (state = defaultState, action) => {
-	switch(action.type) {
-		case constants.CHANGE_TAB:
-			return {...state, current: action.current};
+	switch (action.type) {
+		case constants.CHANGE_DATA:
+			return { ...state,
+				breakfast: [...action.data.breakfast],
+				lunch: [...action.data.lunch],
+				supper: [...action.data.supper],
+				dessert: [...action.data.dessert],
+				status: [...action.data.status],
+				exercise: [...action.data.exercise]
+			};
 		default:
 			return state;
 	}

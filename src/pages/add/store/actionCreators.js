@@ -1,4 +1,5 @@
 import * as constants from './constants'
+import * as constantsFromFirst from '../../first/store/constants'
 import Taro from '@tarojs/taro'
 
 export const pickBigItem = (obj, s) => ({
@@ -10,17 +11,23 @@ export const pickBigItem = (obj, s) => ({
 export const saveItem = (arr) => {
 	return (dispatch) => {
 		Taro.request({
-		  url: 'http://localhost:3000/',
-		  data: {
-		    arr: arr
-		  },
-		  header: {
-		    'content-type': 'application/json'
-		  }
-		})
-		.then(res => console.log(res.data))
-		.catch((err) => {
-			console.log(err)
-		})
+				url: 'http://localhost:3000/meal/item',
+				method: 'POST',
+				data: {
+					arr
+				},
+				header: {
+					'content-type': 'application/json'
+				}
+			})
+			.then(res => {
+				console.log(constantsFromFirst)
+				//dispatch(changeData(res.data.data))
+				//console.log('@@@@@@@@@@')
+				//Taro.navigateBack()
+			})
+			.catch((err) => {
+				console.log(err)
+			})
 	}
 }

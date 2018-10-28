@@ -1,46 +1,59 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
-import { AtTabBar, AtCard, AtTag } from 'taro-ui'
+import Taro, {
+	Component
+} from '@tarojs/taro'
+import {
+	View
+} from '@tarojs/components'
+import {
+	AtTabBar,
+	AtCard,
+	AtTag
+} from 'taro-ui'
 
 import './index.css'
 
 class Index extends Component {
 
-  componentWillReceiveProps (nextProps) {
-    //console.log(this.props, nextProps)
-  }
+	componentWillReceiveProps(nextProps) {
+		//console.log(this.props, nextProps)
+	}
 
-  componentWillUnmount () { }
+	componentWillUnmount() {}
 
-  componentDidShow () { }
+	componentDidShow() {}
 
-  componentDidHide () { }
+	componentDidHide() {}
 
-  onClick(){
-    console.log('777')
-  }
+	onClick() {
+		console.log('777')
+	}
 
-  render () {
-    return (
-      <View className='card'>
+	render() {
+		return (
+			<View className='card'>
 	      <AtCard
 	        className='card'
 	        title='早饭'
 	        thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1500446507/bergrb_qa6kz6.png'
 	      >
-	        <AtTag 
-	          active={true}
-	          name='tag-1' 
-	          type='primary' 
-	          circle 
-	          onClick={this.onClick.bind(this)}
-	        >
-	          tag-1
-	        </AtTag>
+	      {
+	      	this.props.items && this.props.items.map((r, i) => (
+						<AtTag 
+		          active={true}
+		          name={r.name} 
+							onClick = {
+								this.onClick.bind(this)
+							}
+							 key={i}
+		        >
+		          {r.name}
+		        </AtTag>
+	      	))
+	      }
 	      </AtCard>
       </View>
-    )
-  }
+		)
+	}
 }
 
 export default Index

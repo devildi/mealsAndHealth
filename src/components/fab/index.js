@@ -1,28 +1,34 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
-import { AtIcon } from 'taro-ui'
+import Taro, {
+  Component
+} from '@tarojs/taro'
+import {
+  View
+} from '@tarojs/components'
+import {
+  AtIcon
+} from 'taro-ui'
 
 import './index.css'
 
 class Index extends Component {
 
-  componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
+  componentWillReceiveProps(nextProps) {
+    //console.log(this.props, nextProps)
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount() {}
 
-  componentDidShow () { }
+  componentDidShow() {}
 
-  componentDidHide () { }
+  componentDidHide() {}
 
-  handleClick(){
+  handleClick() {
     Taro.navigateTo({
       url: '/pages/add/index'
     })
   }
 
-  render () {
+  render() {
     return (
       <View className='btn' onClick={this.handleClick.bind(this)}>
         <View className='btn1'>
