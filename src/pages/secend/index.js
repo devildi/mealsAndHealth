@@ -9,9 +9,10 @@ import {
 import {
 	AtList,
 	AtListItem,
-	AtCard,
-	AtAccordion
+	AtCard
 } from "taro-ui"
+
+import Toast from '../../components/toast'
 
 import {
 	connect
@@ -21,13 +22,14 @@ import {
 } from './store'
 
 import Div from '../../components/division'
+import List from '../../components/list'
 import './index.css'
 
 class Index extends Component {
 	render() {
 		return (
 			<View className='container'>
-				<Picker mode='date' onChange={this.props.onDateChange}>
+				<Picker mode='date' onChange={this.props.getData}>
 					<View className='picker'>
 						<View>
 							当前选择:
@@ -38,30 +40,13 @@ class Index extends Component {
 					</View>
 					<Div />
 				</Picker>
-				<View className='cardContainer'>
-					<AtCard
-						title='早饭'
-						thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1500446507/bergrb_qa6kz6.png'
-					>
-						<AtList>
-							<AtListItem title='标题文字' onClick={this.handleClick} />
-							<AtListItem title='标题文字' />
-							<AtListItem title='标题文字' extraText='详细信息' />
-						</AtList>
-					</AtCard>
-				</View>
-				<View className='cardContainer'>
-					<AtCard
-						title='中饭'
-						thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1500446507/bergrb_qa6kz6.png'
-					>
-						<AtList>
-							<AtListItem title='标题文字' onClick={this.handleClick} />
-							<AtListItem title='标题文字' />
-							<AtListItem title='标题文字' extraText='详细信息' />
-						</AtList>
-					</AtCard>
-				</View>
+				{this.props.breakfast.length > 0 && <List title='早饭' items={this.props.breakfast}/>}
+        {this.props.lunch.length > 0 && <List title='午饭' items={this.props.lunch}/>}
+        {this.props.supper.length > 0 && <List title='晚饭' items={this.props.supper}/>}
+        {this.props.dessert.length > 0 && <List title='零食' items={this.props.dessert}/>}
+        {this.props.status.length > 0 && <List title='身体状态' items={this.props.status}/>}
+        {this.props.exercise.length > 0 && <List title='锻炼情况' items={this.props.exercise}/>}
+				<Toast />
 			</View>
 		)
 	}
@@ -71,14 +56,19 @@ const mapState = ({
 	secondReducer
 }) => {
 	return {
-		dateSel: secondReducer.dateSel
+		dateSel: secondReducer.dateSel,
+		breakfast: secondReducer.breakfast,
+    lunch: secondReducer.lunch,
+    supper: secondReducer.supper,
+    dessert: secondReducer.dessert,
+    status: secondReducer.status
 	}
 }
 
 const mapDispatch = (dispatch) => {
 	return {
-		onDateChange(e) {
-			dispatch(actionCreators.changeDate(e.detail.value))
+		getData(e) {
+			dispatch(actionCreators.getData(e.detail.value))
 		}
 	}
 }

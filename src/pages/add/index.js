@@ -12,6 +12,8 @@ import {
   toJS
 } from 'immutable'
 
+import {actionCreators as actionCreatorsFromToast} from '../../components/toast/store'
+
 import CardMe from '../../components/card/index'
 import Div from '../../components/division'
 import Toast from '../../components/toast'
@@ -96,7 +98,7 @@ class Index extends Component {
           保存
           </AtButton>
         </View>
-        <Toast isOpen={this.props.status}/>
+        <Toast />
       </View>
     )
   }
@@ -108,8 +110,7 @@ const mapState = ({
   return {
     arr1: addReducer.arr1,
     arr2: addReducer.arr2,
-    arr3: addReducer.selected,
-    status: addReducer.statusOfToast
+    arr3: addReducer.selected
   }
 }
 
@@ -123,7 +124,11 @@ const mapDispatch = (dispatch) => {
     },
     save(arr) {
       if (!arr[0]) {
-        return console.log('有项未选！')
+        return dispatch(actionCreatorsFromToast.openToast({
+          isOpened: true,
+          text: '您有未选的项！',
+          status: 'error'
+        }))
       }
       dispatch(actionCreators.saveItem(arr))
     }

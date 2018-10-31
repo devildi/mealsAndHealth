@@ -10,7 +10,9 @@ export const getData = () => {
 				}
 			})
 			.then(res => {
-				dispatch(changeData(res.data.data))
+				if(res.data.data){
+					dispatch(changeData(res.data.data))
+				}
 			})
 			.catch((err) => {
 				console.log(err)

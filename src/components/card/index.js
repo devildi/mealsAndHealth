@@ -33,8 +33,7 @@ class Index extends Component {
 			<View className='card'>
 	      <AtCard
 	        className='card'
-	        title='早饭'
-	        thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1500446507/bergrb_qa6kz6.png'
+	        title={this.props.title}
 	      >
 	      {
 	      	this.props.items && this.props.items.map((r, i) => (

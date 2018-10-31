@@ -21,10 +21,11 @@ export const saveItem = (arr) => {
 				}
 			})
 			.then(res => {
-				console.log(constantsFromFirst)
-				//dispatch(changeData(res.data.data))
-				//console.log('@@@@@@@@@@')
-				//Taro.navigateBack()
+				dispatch({
+					type: 'CHANGE_DATA',
+					data: res.data.data
+				})
+				Taro.navigateBack()
 			})
 			.catch((err) => {
 				console.log(err)

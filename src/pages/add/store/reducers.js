@@ -26,11 +26,6 @@ const bigItems = [
   name: '身体状态',
   active: false,
   dis: ''
-},
-{
-  name: '锻炼情况',
-  active: false,
-  dis: ''
 }
 ]
 
@@ -70,8 +65,7 @@ let smallItems = [
 const defaultState = {
 	arr1: bigItems,
 	arr2: smallItems,
-  selected: [],
-	statusOfToast: false
+  selected: []
 }
 
 const choose = (action, state, array, bigItem) => {

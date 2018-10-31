@@ -31,7 +31,7 @@ class Index extends Component {
   }
 
   componentWillMount() {
-    //let array = JSON.parse(this.$router.params.array)
+    
   }
 
   componentWillUnmount() {}
@@ -39,6 +39,10 @@ class Index extends Component {
   componentDidShow() {}
 
   componentDidHide() {}
+
+  handleClick(i, e){
+    this.props.handleClick(i, e)
+  }
 
   render() {
     return (
@@ -52,7 +56,7 @@ class Index extends Component {
             { title: '历史记录', iconType: 'bullet-list' },
             { title: '看一看', iconType: 'eye'}
           ]}
-          onClick={this.props.handleClick}
+          onClick={this.handleClick.bind(this, this.props.current)}
           current={this.props.current}
         />
       </View>
@@ -70,8 +74,10 @@ const mapState = ({
 
 const mapDispatch = (dispatch) => {
   return {
-    handleClick(i) {
-      dispatch(actionCreators.changeTab(i))
+    handleClick(i, e) {
+      if(i !== e){
+        dispatch(actionCreators.changeTab(e))
+      }
     }
   }
 }

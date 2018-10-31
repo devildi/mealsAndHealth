@@ -40,14 +40,17 @@ class Index extends Component {
   render() {
     return (
       <View className='index'>
-        {this.props.breakfast.length > 0 && <CardMe items={this.props.breakfast}/>}
-        {this.props.lunch.length > 0 && <CardMe items={this.props.lunch}/>}
-        {this.props.supper.length > 0 && <CardMe items={this.props.supper}/>}
-        {this.props.dessert.length > 0 && <CardMe items={this.props.dessert}/>}
-        {this.props.status.length > 0 && <CardMe items={this.props.status}/>}
-        {this.props.exercise.length > 0 && <CardMe items={this.props.exercise}/>}
+        {this.props.breakfast.length > 0 && <CardMe title='早饭' items={this.props.breakfast}/>}
+        {this.props.lunch.length > 0 && <CardMe title='午饭' items={this.props.lunch}/>}
+        {this.props.supper.length > 0 && <CardMe title='晚饭' items={this.props.supper}/>}
+        {this.props.dessert.length > 0 && <CardMe title='零食' items={this.props.dessert}/>}
+        {this.props.status.length > 0 && <CardMe title='身体状态' items={this.props.status}/>}
         {
-          this.props.breakfast || this.props.lunch || this.props.supper || this.props.dessert || this.props.status || this.props.exercise
+          this.props.breakfast.length
+           || this.props.lunch.length
+           || this.props.supper.length
+           || this.props.dessert.length
+           || this.props.status.length
           ? <Fab />
           : <Blc />
         }
@@ -64,8 +67,7 @@ const mapState = ({
     lunch: firstReducer.lunch,
     supper: firstReducer.supper,
     dessert: firstReducer.dessert,
-    status: firstReducer.status,
-    exercise: firstReducer.exercise
+    status: firstReducer.status
   }
 }
 

@@ -1,1 +1,2 @@
 export const CHANGE_DATE = 'CHANGE_DATE';
+export const INISTIAL_DATA = 'INISTIAL_DATA';
