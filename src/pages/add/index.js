@@ -46,6 +46,12 @@ class Index extends Component {
 
   componentWillUnmount() {}
 
+  componentWillMount() {
+    this.setState({
+      arrForSave: this.props.arr3
+    })
+  }
+
   componentDidShow() {}
 
   componentDidHide() {}

@@ -14,6 +14,7 @@ class Index extends Component {
       <View className='cardContainer'>
 				<AtCard
 					title={this.props.title}
+					thumb={this.props.thumb}
 				>
 					<AtList>
 						{

@@ -12,7 +12,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
 	switch(action.type) {
 		case constants.CHANGE_DATE:
-			return {...state, 'dateSel': action.date};
+			return action.date ? {...state, 'dateSel': action.date} : {...state, 'dateSel': ''}
 		case constants.INISTIAL_DATA:
 			return { ...state,
 				breakfast: [...action.data.breakfast],

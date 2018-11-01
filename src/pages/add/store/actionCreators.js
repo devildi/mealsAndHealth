@@ -1,11 +1,23 @@
 import * as constants from './constants'
-import * as constantsFromFirst from '../../first/store/constants'
+import { actionCreators as constantsFromFirst }from '../../first/store'
 import Taro from '@tarojs/taro'
 
 export const pickBigItem = (obj, s) => ({
 	type: constants.PICK_BIG,
 	data: obj,
 	flag: s
+})
+
+const clearItems = () => ({
+	type: constants.CLEAR_ITEMS
+})
+
+export const firstToAdd = (arr, str) => ({
+	type: constants.FIRST_TO_ADD,
+	data: {
+		arr,
+		str
+	}
 })
 
 export const saveItem = (arr) => {
@@ -21,11 +33,9 @@ export const saveItem = (arr) => {
 				}
 			})
 			.then(res => {
-				dispatch({
-					type: 'CHANGE_DATA',
-					data: res.data.data
-				})
+				dispatch(constantsFromFirst.changeData(res.data.data))
 				Taro.navigateBack()
+				dispatch(clearItems())
 			})
 			.catch((err) => {
 				console.log(err)

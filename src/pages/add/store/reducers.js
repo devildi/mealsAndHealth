@@ -1,66 +1,6 @@
 import * as constants from './constants';
 import { fromJS, toJS } from 'immutable';
-
-const bigItems = [
-{
-  name: '早饭',
-  active: false,
-  dis: ''
-},
-{
-  name: '午饭',
-  active: false,
-  dis: ''
-},
-{
-  name: '晚饭',
-  active: false,
-  dis: ''
-},
-{
-  name: '零食',
-  active: false,
-  dis: ''
-},
-{
-  name: '身体状态',
-  active: false,
-  dis: ''
-}
-]
-
-let smallItems = [
-{
-  name: '食堂',
-  active: false,
-  dis: ''
-},
-{
-  name: '鸡蛋饼',
-  active: false,
-  dis: ''
-},
-{
-  name: '下馆子',
-  active: false,
-  dis: ''
-},
-{
-  name: '呵呵哒',
-  active: false,
-  dis: ''
-},
-{
-  name: '包子',
-  active: false,
-  dis: ''
-},
-{
-  name: '牛奶',
-  active: false,
-  dis: ''
-}
-]
+import{ bigItems, smallItems } from '../../../tool/data'
 
 const defaultState = {
 	arr1: bigItems,
@@ -123,6 +63,26 @@ const choose = (action, state, array, bigItem) => {
   }
 }
 
+const substituteAnItem = (arr, item) => {
+  arr.map((r, i) => {
+    if(r.name === item.name){
+      arr.splice(i, 1, item)
+    }
+  })
+  return arr
+}
+
+const substituteAnArray = (arr1, arr2) => {
+  arr2.map((r, i) => {
+    arr1.map((row, index) => {
+      if(row.name === r.name){
+        arr1.splice(index, 1, arr2[i])
+      }
+    })
+  })
+  return arr1
+}
+
 export default (state = defaultState, action) => {
 	switch(action.type) {
 		case constants.PICK_BIG:
@@ -133,6 +93,22 @@ export default (state = defaultState, action) => {
 			return action.flag 
 			? {...state, arr2: [...newArr], selected: [bigItem, ...array]} 
 			: {...state, arr1: [...newArr], selected: [bigItem, ...array]}
+    case constants.CLEAR_ITEMS:
+      return {...defaultState};
+    case constants.FIRST_TO_ADD:
+      let str = action.data.str
+      let arr = action.data.arr
+      let newObj = {...arr[0], name: str}
+      
+      let newbigItems = substituteAnItem([...bigItems], newObj)
+      let newsmallItems = substituteAnArray([...smallItems], arr)
+
+      return {
+        ...state,
+        arr1: newbigItems,
+        arr2: newsmallItems,
+        selected: [newObj, ...arr]
+      }
 		default:
 			return state;
 	}

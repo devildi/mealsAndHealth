@@ -5,8 +5,7 @@ const defaultState = {
 	lunch: [],
 	supper: [],
 	dessert: [],
-	status: [],
-	exercise: []
+	status: []
 }
 
 export default (state = defaultState, action) => {
@@ -17,8 +16,7 @@ export default (state = defaultState, action) => {
 				lunch: [...action.data.lunch],
 				supper: [...action.data.supper],
 				dessert: [...action.data.dessert],
-				status: [...action.data.status],
-				exercise: [...action.data.exercise]
+				status: [...action.data.status]
 			};
 		default:
 			return state;

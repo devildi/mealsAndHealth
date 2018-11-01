@@ -15,6 +15,8 @@ import CardMe from '../../components/card/index'
 import Fab from '../../components/fab/index'
 import Blc from '../../components/block/index'
 
+import { actionCreators as actionCreatorsFromAdd} from '../add/store'
+
 import './index.css'
 
 class Index extends Component {
@@ -37,21 +39,62 @@ class Index extends Component {
 
   componentDidHide() {}
 
+  click(arr, str, e){
+    console.log('oooo')
+    //this.props.firstToAdd(arr, str)
+  }
+
   render() {
     return (
       <View className='index'>
-        {this.props.breakfast.length > 0 && <CardMe title='早饭' items={this.props.breakfast}/>}
-        {this.props.lunch.length > 0 && <CardMe title='午饭' items={this.props.lunch}/>}
-        {this.props.supper.length > 0 && <CardMe title='晚饭' items={this.props.supper}/>}
-        {this.props.dessert.length > 0 && <CardMe title='零食' items={this.props.dessert}/>}
-        {this.props.status.length > 0 && <CardMe title='身体状态' items={this.props.status}/>}
+        {this.props.breakfast.length > 0 
+          && <CardMe
+          onClick={this.click.bind(this, this.props.breakfast, '早饭')}
+          title='早饭' 
+          items={this.props.breakfast}
+          thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051655/Food-Icons-06_o2jpqs.png'
+        />}
+        {this.props.lunch.length > 0 
+          && <CardMe
+          onClick={this.click.bind(this, this.props.lunch, '午饭')}
+          title='午饭' 
+          items={this.props.lunch}
+          thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1500446507/bergrb_qa6kz6.png'
+        />}
+        {this.props.supper.length > 0 
+          && <CardMe
+          onClick={this.click.bind(this, this.props.supper, '晚饭')}
+          title='晚饭' 
+          items={this.props.supper}
+          thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051655/Food-Icons-05_m4bwtl.png'
+        />}
+        {this.props.dessert.length > 0 
+          && <CardMe
+          onClick={this.click.bind(this, this.props.dessert, '零食')}
+          title='零食' 
+          items={this.props.dessert}
+          thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051654/Food-Icons-13_dgcjfr.png'
+        />}
+        {this.props.status.length > 0 
+          && <CardMe
+          onClick={this.click.bind(this, this.props.status, '身体状态')}
+          title='身体状态'
+          items={this.props.status}
+          thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051655/bodyboard-1_ucbldu.png'
+        />}
         {
           this.props.breakfast.length
            || this.props.lunch.length
            || this.props.supper.length
            || this.props.dessert.length
            || this.props.status.length
-          ? <Fab />
+          ? this.props.breakfast.length
+             && this.props.lunch.length
+             && this.props.supper.length
+             && this.props.dessert.length
+             && this.props.status.length
+             ? <Fab />
+             : <Fab />
           : <Blc />
         }
       </View>
@@ -75,6 +118,12 @@ const mapDispatch = (dispatch) => {
   return {
     getData() {
       dispatch(actionCreators.getData())
+    },
+    firstToAdd(arr, str){
+      dispatch(actionCreatorsFromAdd.firstToAdd(arr, str))
+      Taro.navigateTo({
+        url: '/pages/add/index'
+      })
     }
   }
 }

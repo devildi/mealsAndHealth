@@ -29,6 +29,8 @@ export const getData = (date) => {
 					dispatch(changeDate(date))
 					dispatch(inistialData(res.data.data))
 				} else {
+					dispatch(changeDate(''))
+					dispatch(inistialData({breakfast: [],lunch: [],supper: [],dessert: [],status: []}))
 					dispatch(actionCreators.openToast({
 						isOpened: true,
 						text: '当日无数据',
@@ -38,6 +40,11 @@ export const getData = (date) => {
 			})
 			.catch((err) => {
 				console.log(err)
+				dispatch(actionCreators.openToast({
+						isOpened: true,
+						text: '网络故障，稍后再试！',
+						status: 'error'
+					}))
 			})
 	}
 }

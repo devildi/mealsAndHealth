@@ -40,12 +40,41 @@ class Index extends Component {
 					</View>
 					<Div />
 				</Picker>
-				{this.props.breakfast.length > 0 && <List title='早饭' items={this.props.breakfast}/>}
-        {this.props.lunch.length > 0 && <List title='午饭' items={this.props.lunch}/>}
-        {this.props.supper.length > 0 && <List title='晚饭' items={this.props.supper}/>}
-        {this.props.dessert.length > 0 && <List title='零食' items={this.props.dessert}/>}
-        {this.props.status.length > 0 && <List title='身体状态' items={this.props.status}/>}
-        {this.props.exercise.length > 0 && <List title='锻炼情况' items={this.props.exercise}/>}
+				{this.props.breakfast.length > 0 
+					&& <List 
+					title='早饭' 
+					items={this.props.breakfast}
+					thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051655/Food-Icons-06_o2jpqs.png'
+					/>
+				}
+        {this.props.lunch.length > 0 
+        	&& <List 
+        	title='午饭' 
+        	items={this.props.lunch}
+					thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1500446507/bergrb_qa6kz6.png'
+        	/>
+        }
+        {this.props.supper.length > 0 
+        	&& <List 
+        	title='晚饭' 
+        	items={this.props.supper}
+					thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051655/Food-Icons-05_m4bwtl.png'
+        	/>
+        }
+        {this.props.dessert.length > 0 
+        	&& <List 
+        	title='零食' 
+        	items={this.props.dessert}
+					thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051654/Food-Icons-13_dgcjfr.png'
+        	/>
+        }
+        {this.props.status.length > 0 
+        	&& <List 
+        	title='身体状态' 
+        	items={this.props.status}
+					thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051655/bodyboard-1_ucbldu.png'
+        	/>
+        }
 				<Toast />
 			</View>
 		)

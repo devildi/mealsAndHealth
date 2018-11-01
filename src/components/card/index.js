@@ -24,8 +24,14 @@ class Index extends Component {
 
 	componentDidHide() {}
 
-	onClick() {
-		console.log('777')
+	onClick(i, e) {
+		e.stopPropagation()
+		console.log(i)
+	}
+
+	onClick1(e) {
+		e.stopPropagation()
+		console.log(e)
 	}
 
 	render() {
@@ -34,16 +40,16 @@ class Index extends Component {
 	      <AtCard
 	        className='card'
 	        title={this.props.title}
+	        thumb={this.props.thumb}
+	        onClick={this.onClick1.bind(this)}
 	      >
 	      {
 	      	this.props.items && this.props.items.map((r, i) => (
 						<AtTag 
 		          active={true}
 		          name={r.name} 
-							onClick = {
-								this.onClick.bind(this)
-							}
-							 key={i}
+							onClick ={this.onClick.bind(this)}
+							key={i}
 		        >
 		          {r.name}
 		        </AtTag>
