@@ -9,8 +9,15 @@ import {
 	AtCard,
 	AtTag
 } from 'taro-ui'
+import {
+  connect
+} from '@tarojs/redux'
+
+import { actionCreators } from '../modal/store'
 
 import './index.css'
+
+import Modal from '../modal'
 
 class Index extends Component {
 
@@ -24,14 +31,9 @@ class Index extends Component {
 
 	componentDidHide() {}
 
-	onClick(i, e) {
-		e.stopPropagation()
-		console.log(i)
-	}
-
-	onClick1(e) {
-		e.stopPropagation()
-		console.log(e)
+	onClick(i) {
+		//e.stopPropagation()
+		this.props.handleClick(i)
 	}
 
 	render() {
@@ -41,14 +43,13 @@ class Index extends Component {
 	        className='card'
 	        title={this.props.title}
 	        thumb={this.props.thumb}
-	        onClick={this.onClick1.bind(this)}
 	      >
 	      {
 	      	this.props.items && this.props.items.map((r, i) => (
 						<AtTag 
 		          active={true}
 		          name={r.name} 
-							onClick ={this.onClick.bind(this)}
+							onClick ={this.onClick.bind(this, r)}
 							key={i}
 		        >
 		          {r.name}
@@ -56,9 +57,24 @@ class Index extends Component {
 	      	))
 	      }
 	      </AtCard>
+	      <Modal />
       </View>
 		)
 	}
 }
 
-export default Index
+const mapState = () => {
+	return {
+
+	}
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    handleClick(i) {
+      dispatch(actionCreators.openModal(i))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(Index)

@@ -34,50 +34,49 @@ class Index extends Component {
   componentDidShow() {}
 
   componentDidMount() {
-    this.props.getData()
+    Taro.getUserInfo()
+    .then((res) => {
+      console.log(res)
+      this.props.getData(res.userInfo.nickName)
+    })
   }
 
   componentDidHide() {}
 
-  click(arr, str, e){
-    console.log('oooo')
-    //this.props.firstToAdd(arr, str)
-  }
+  // click(arr, str, e){
+  //   this.props.firstToAdd(arr, str)
+  //   onClick={this.click.bind(this, this.props.lunch, '午饭')}
+  // }
 
   render() {
     return (
       <View className='index'>
         {this.props.breakfast.length > 0 
           && <CardMe
-          onClick={this.click.bind(this, this.props.breakfast, '早饭')}
           title='早饭' 
           items={this.props.breakfast}
           thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051655/Food-Icons-06_o2jpqs.png'
         />}
         {this.props.lunch.length > 0 
           && <CardMe
-          onClick={this.click.bind(this, this.props.lunch, '午饭')}
           title='午饭' 
           items={this.props.lunch}
           thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1500446507/bergrb_qa6kz6.png'
         />}
         {this.props.supper.length > 0 
           && <CardMe
-          onClick={this.click.bind(this, this.props.supper, '晚饭')}
           title='晚饭' 
           items={this.props.supper}
           thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051655/Food-Icons-05_m4bwtl.png'
         />}
         {this.props.dessert.length > 0 
           && <CardMe
-          onClick={this.click.bind(this, this.props.dessert, '零食')}
           title='零食' 
           items={this.props.dessert}
           thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051654/Food-Icons-13_dgcjfr.png'
         />}
         {this.props.status.length > 0 
           && <CardMe
-          onClick={this.click.bind(this, this.props.status, '身体状态')}
           title='身体状态'
           items={this.props.status}
           thumb='https://res.cloudinary.com/dnfhsjz8u/image/upload/v1541051655/bodyboard-1_ucbldu.png'
@@ -116,8 +115,8 @@ const mapState = ({
 
 const mapDispatch = (dispatch) => {
   return {
-    getData() {
-      dispatch(actionCreators.getData())
+    getData(name) {
+      dispatch(actionCreators.getData(name))
     },
     firstToAdd(arr, str){
       dispatch(actionCreatorsFromAdd.firstToAdd(arr, str))

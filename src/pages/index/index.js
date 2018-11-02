@@ -34,6 +34,10 @@ class Index extends Component {
     
   }
 
+  componentDidMount() {
+
+  }
+
   componentWillUnmount() {}
 
   componentDidShow() {}

@@ -1,16 +1,21 @@
 import * as constants from './constants'
 import Taro from '@tarojs/taro'
 
-export const getData = () => {
+export const getData = (name) => {
 	return (dispatch) => {
 		Taro.request({
 				url: 'http://localhost:3000/meal/item',
+				// data: {
+				// 	name: name
+				// },
 				header: {
 					'content-type': 'application/json'
 				}
 			})
 			.then(res => {
-				dispatch(changeData(res.data.data))
+				if(res.data.data){
+					dispatch(changeData(res.data.data))
+				}
 			})
 			.catch((err) => {
 				console.log(err)
