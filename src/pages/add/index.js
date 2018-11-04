@@ -56,6 +56,14 @@ class Index extends Component {
 
   componentDidHide() {}
 
+  pickBigItem(obj){
+    this.props.pickBigItem(obj)
+  }
+
+  pickSmallItem(obj, str){
+    this.props.pickSmallItem(obj)
+  }
+
   save() {
     this.props.save(this.state.arrForSave)
   }
@@ -72,7 +80,7 @@ class Index extends Component {
                 type='primary'
                 circle
                 active={row.active}
-                onClick={this.props.pickBigItem} 
+                onClick={this.pickBigItem.bind(this, row)} 
               >
                 {row.name}
               </AtTag>
@@ -88,7 +96,7 @@ class Index extends Component {
               <AtTag 
                 name={row.name}
                 active={row.active}
-                onClick={this.props.pickSmallItem} 
+                onClick={this.pickSmallItem.bind(this, row)} 
               >
                 {row.name}
               </AtTag>

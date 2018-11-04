@@ -26,6 +26,7 @@ export const getData = (date) => {
 			})
 			.then(res => {
 				if(res.data.data){
+					console.log(res.data.data)
 					dispatch(changeDate(date))
 					dispatch(inistialData(res.data.data))
 				} else {

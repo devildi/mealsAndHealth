@@ -1,26 +1,29 @@
 import Taro, { Component } from '@tarojs/taro'
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtInput} from "taro-ui"
 import { connect } from '@tarojs/redux'
-import {
-	actionCreators
-} from './store'
+import { actionCreators } from './store'
 
 class Index extends Component {
 
 	submit(){
-		this.props.submit(this.props.content)
-	} 
+		this.props.submit(
+			{...this.props.obj, dis: this.props.content}, 
+			this.props.which,
+			this.props.timeStamp)
+	}
 
   render () {
     return (
-      <AtModal isOpened={this.props.isOpened}>
-			  <AtModalHeader>{this.props.title}</AtModalHeader>
+      <AtModal 
+      	isOpened={this.props.isOpened}
+      >
+			  <AtModalHeader>{this.props.obj.name}</AtModalHeader>
 			  <AtModalContent>
 			  	<AtInput
 		        name='value'
 		        type='text'
-		        placeholder='描述你的早餐！'
-		        value={this.props.content}
+		        placeholder={`在这里添加描述...`}
+		        value={this.props.obj.dis}
 		        onChange={this.props.handleChange}
 		      />
 			  </AtModalContent>
@@ -34,12 +37,15 @@ class Index extends Component {
 }
 
 const mapState = ({
-  modalReducer
+  modalReducer,
+  secondReducer
 }) => {
 	return {
 		isOpened: modalReducer.isOpened,
-		title: modalReducer.title,
-		content: modalReducer.content
+		obj: modalReducer.obj,
+		content: modalReducer.content,
+		which: modalReducer.which,
+		timeStamp: secondReducer.dateSel
 	}
 }
 
@@ -51,8 +57,8 @@ const mapDispatch = (dispatch) => {
 		handleChange(v){
 			dispatch(actionCreators.changeContent(v))
 		},
-		submit(v){
-			console.log(v)
+		submit(obj, s, t){
+			dispatch(actionCreators.updateContent(obj, s, t))
 		}
 	}
 }

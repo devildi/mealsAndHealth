@@ -36,7 +36,7 @@ class Index extends Component {
   componentDidMount() {
     Taro.getUserInfo()
     .then((res) => {
-      console.log(res)
+      //console.log(res)
       this.props.getData(res.userInfo.nickName)
     })
   }

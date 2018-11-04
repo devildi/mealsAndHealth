@@ -19,7 +19,7 @@ class Index extends Component {
 					<AtList>
 						{
 							this.props.items && this.props.items.map((r, i) => (
-								<AtListItem title={r.name} key={i} extraText={r.des}/>
+								<AtListItem title={r.name} key={i} extraText={r.dis}/>
 							))
 						}
 					</AtList>

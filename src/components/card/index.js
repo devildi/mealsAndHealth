@@ -31,9 +31,10 @@ class Index extends Component {
 
 	componentDidHide() {}
 
-	onClick(i) {
+	onClick(i, y) {
+		//console.log(i, y)
 		//e.stopPropagation()
-		this.props.handleClick(i)
+		this.props.handleClick(i, y)
 	}
 
 	render() {
@@ -49,7 +50,7 @@ class Index extends Component {
 						<AtTag 
 		          active={true}
 		          name={r.name} 
-							onClick ={this.onClick.bind(this, r)}
+							onClick ={this.onClick.bind(this, r, this.props.title)}
 							key={i}
 		        >
 		          {r.name}
@@ -71,8 +72,8 @@ const mapState = () => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleClick(i) {
-      dispatch(actionCreators.openModal(i))
+    handleClick(i, y) {
+      dispatch(actionCreators.openModal(i, y))
     }
   }
 }

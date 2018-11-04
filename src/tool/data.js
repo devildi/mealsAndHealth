@@ -30,31 +30,31 @@ export const smallItems = [
 {
   name: '食堂',
   active: false,
-  dis: ''
+  dis: '11'
 },
 {
   name: '鸡蛋饼',
   active: false,
-  dis: ''
+  dis: '22'
 },
 {
   name: '下馆子',
   active: false,
-  dis: ''
+  dis: '33'
 },
 {
   name: '呵呵哒',
   active: false,
-  dis: ''
+  dis: '4444'
 },
 {
   name: '包子',
   active: false,
-  dis: ''
+  dis: '5555'
 },
 {
   name: '牛奶',
   active: false,
-  dis: ''
+  dis: '999999'
 }
 ]

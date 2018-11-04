@@ -9,9 +9,8 @@ const defaultState = {
 }
 
 const choose = (action, state, array, bigItem) => {
-
 	let newArr = action.flag ? [...state.arr2] : [...state.arr1]
-	let newObj = {...action.data, active: !action.data.active, dis: ''}
+	let newObj = {...action.data, active: !action.data.active, dis: action.data.dis}
 
   if(!action.flag){
   	let position = null
