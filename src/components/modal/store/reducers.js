@@ -13,10 +13,11 @@ export default (state = defaultState, action) => {
 			return {...state, 
 				isOpened: true, 
 				obj: action.data, 
-				which: action.which
+				which: action.which,
+				content: action.data.dis
 			};
 		case constants.CLOSE_MODAL:
-			return {...state, isOpened: false, content: ''};
+			return {...state, isOpened: false};
 		case constants.CHANGE_CONTENT:
 			return {...state, content: action.data}
 		default:

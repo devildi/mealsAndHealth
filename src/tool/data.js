@@ -30,31 +30,76 @@ export const smallItems = [
 {
   name: '食堂',
   active: false,
-  dis: '11'
+  dis: ''
 },
 {
   name: '鸡蛋饼',
   active: false,
-  dis: '22'
+  dis: ''
 },
 {
-  name: '下馆子',
+  name: '麦当劳',
   active: false,
-  dis: '33'
-},
-{
-  name: '呵呵哒',
-  active: false,
-  dis: '4444'
+  dis: ''
 },
 {
   name: '包子',
   active: false,
-  dis: '5555'
+  dis: ''
 },
 {
-  name: '牛奶',
+  name: '麦片&&牛奶',
   active: false,
-  dis: '999999'
+  dis: ''
+},
+{
+  name: '下馆子',
+  active: false,
+  dis: ''
+},
+{
+  name: '外卖',
+  active: false,
+  dis: ''
+},
+{
+  name: '烧烤',
+  active: false,
+  dis: ''
+},
+{
+  name: '冰棍',
+  active: false,
+  dis: ''
+},
+{
+  name: '饮料',
+  active: false,
+  dis: ''
+},
+{
+  name: '小食品',
+  active: false,
+  dis: ''
+},
+{
+  name: '腹痛',
+  active: false,
+  dis: ''
+},
+{
+  name: '发烧',
+  active: false,
+  dis: ''
+},
+{
+  name: '拉肚子',
+  active: false,
+  dis: ''
+},
+{
+  name: '其他',
+  active: false,
+  dis: ''
 }
 ]

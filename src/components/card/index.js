@@ -48,8 +48,8 @@ class Index extends Component {
 	      {
 	      	this.props.items && this.props.items.map((r, i) => (
 						<AtTag 
-		          active={true}
-		          name={r.name} 
+		          active={r.dis === '' ? false : true}
+		          name={r.name}  
 							onClick ={this.onClick.bind(this, r, this.props.title)}
 							key={i}
 		        >
