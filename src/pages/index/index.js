@@ -17,6 +17,7 @@ import {
 
 import First from '../first'
 import Secend from '../secend'
+import Third from '../third'
 
 import './index.css'
 
@@ -53,6 +54,7 @@ class Index extends Component {
       <View className='index'>
         {this.props.current === 0 && <First />}
         {this.props.current === 1 && <Secend />}
+        {this.props.current === 2 && <Third />}
         <AtTabBar
           fixed
           tabList={[
