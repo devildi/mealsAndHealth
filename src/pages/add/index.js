@@ -25,6 +25,8 @@ import {
   actionCreators
 } from './store'
 
+import {formatDate} from '../../tool/utils'
+
 import './index.css'
 
 class Index extends Component {
@@ -65,7 +67,7 @@ class Index extends Component {
   }
 
   save() {
-    this.props.save(this.state.arrForSave)
+    this.props.save(this.state.arrForSave, this.props.date)
   }
 
   render() {
@@ -119,12 +121,13 @@ class Index extends Component {
 }
 
 const mapState = ({
-  addReducer
+  addReducer,secondReducer
 }) => {
   return {
     arr1: addReducer.arr1,
     arr2: addReducer.arr2,
-    arr3: addReducer.selected
+    arr3: addReducer.selected,
+    date: secondReducer.dateSel
   }
 }
 
@@ -136,7 +139,7 @@ const mapDispatch = (dispatch) => {
     pickSmallItem(obj) {
       dispatch(actionCreators.pickBigItem(obj, '1'))
     },
-    save(arr) {
+    save(arr, date) {
       if (!arr[0]) {
         return dispatch(actionCreatorsFromToast.openToast({
           isOpened: true,
@@ -144,7 +147,7 @@ const mapDispatch = (dispatch) => {
           status: 'error'
         }))
       }
-      dispatch(actionCreators.saveItem(arr))
+      dispatch(actionCreators.saveItem(arr, date, formatDate(new Date())))
     }
   }
 }

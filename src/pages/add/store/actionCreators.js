@@ -1,5 +1,6 @@
 import * as constants from './constants'
 import { actionCreators as constantsFromFirst }from '../../first/store'
+import { actionCreators as constantsFromSecond }from '../../secend/store'
 import Taro from '@tarojs/taro'
 
 export const pickBigItem = (obj, s) => ({
@@ -20,7 +21,7 @@ export const firstToAdd = (arr, str) => ({
 	}
 })
 
-export const saveItem = (arr) => {
+export const saveItem = (arr, date, date1) => {
 	return (dispatch) => {
 		Taro.request({
 				url: 'http://localhost:3000/meal/item',
@@ -34,6 +35,9 @@ export const saveItem = (arr) => {
 			})
 			.then(res => {
 				dispatch(constantsFromFirst.changeData(res.data.data))
+				if(date === date1){
+					dispatch(constantsFromSecond.inistialData(res.data.data))
+				}
 				Taro.navigateBack()
 				dispatch(clearItems())
 			})

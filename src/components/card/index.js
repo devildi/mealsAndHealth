@@ -5,7 +5,6 @@ import {
 	View
 } from '@tarojs/components'
 import {
-	AtTabBar,
 	AtCard,
 	AtTag
 } from 'taro-ui'
@@ -47,14 +46,15 @@ class Index extends Component {
 	      >
 	      {
 	      	this.props.items && this.props.items.map((r, i) => (
-						<AtTag 
-		          active={r.dis === '' ? false : true}
-		          name={r.name}  
-							onClick ={this.onClick.bind(this, r, this.props.title)}
-							key={i}
-		        >
-		          {r.name}
-		        </AtTag>
+	      		<View key={i} className='tag'>
+							<AtTag
+			          active={r.dis === '' ? false : true}
+			          name={r.name}  
+								onClick ={this.onClick.bind(this, r, this.props.title)}
+			        >
+			          {r.name}
+			        </AtTag>
+		        </View>
 	      	))
 	      }
 	      </AtCard>
