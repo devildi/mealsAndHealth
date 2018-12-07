@@ -1,3 +1,4 @@
 export const CHANGE_CONTENTS = 'CHANGE_CONTENTS';
 export const CHANGE_LOADING = 'CHANGE_LOADING';
+export const CONFIRM = 'CONFIRM';
 export const CHANGE_CITY_ARRAY = 'CHANGE_CITY_ARRAY';

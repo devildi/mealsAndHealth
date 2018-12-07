@@ -2,6 +2,7 @@ import * as constants from './constants'
 
 const defaultState = {
 	content: '',
+	confirm: false,
 	isLoading: false,
 	hasGOrD: [],
 	overNight: []
@@ -15,7 +16,11 @@ export default (state = defaultState, action) => {
 			};
 		case constants.CHANGE_LOADING:
 			return { ...state,
-				isLoading: !state.isLoading
+				isLoading: action.data
+			};
+		case constants.CONFIRM:
+			return { ...state,
+				confirm: action.data
 			};
 		case constants.CHANGE_CITY_ARRAY:
 			return {

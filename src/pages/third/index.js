@@ -6,8 +6,10 @@ import {
 	Text
 } from '@tarojs/components'
 
-import { AtSearchBar, AtDivider, AtTag, AtActivityIndicator } from 'taro-ui'
+import Toast from '../../components/toast'
 
+import { AtSearchBar, AtDivider, AtTag, AtActivityIndicator } from 'taro-ui'
+import {actionCreators as actionCreatorsFromToast} from '../../components/toast/store'
 import {
 	connect
 } from '@tarojs/redux'
@@ -16,6 +18,10 @@ import { actionCreators } from './store'
 import './index.css'
 
 class Index extends Component {
+	onActionClick(){
+		this.props.onActionClick(this.props.content)
+	}
+
 	render() {
 		return (
 			<View className='container'>
@@ -23,10 +29,11 @@ class Index extends Component {
 					<AtSearchBar
 		        value={this.props.content}
 		        onChange={this.props.handleChange}
-		        onActionClick={this.props.onActionClick}
+		        onActionClick={this.onActionClick.bind(this)}
+		        onFocus={this.props.onFocus}
 		      />
 		    </View>
-	      <View className='title'>沈阳出发：</View>
+	      {this.props.content && this.props.confirm && <View className='title'>{`从${this.props.content}出发：`}</View>}
 	      {this.props.hasGOrD && this.props.hasGOrD.length > 0 && 
 	     	<View>
 	      	<AtDivider content='动车高铁' />
@@ -58,6 +65,7 @@ class Index extends Component {
 		    	content='数据爬取中...'
 		    >
 		    </AtActivityIndicator>}
+		    <Toast />
 			</View>
 		)
 	}
@@ -68,6 +76,7 @@ const mapState = ({
 }) => {
 	return {
 		content: thirdReducer.content,
+		confirm: thirdReducer.confirm,
 		isLoading: thirdReducer.isLoading,
 		hasGOrD: thirdReducer.hasGOrD,
 		overNight: thirdReducer.overNight
@@ -79,8 +88,20 @@ const mapDispatch = (dispatch) => {
 		handleChange(v){
 			dispatch(actionCreators.changeContents(v))
 		},
-		onActionClick(){
-			dispatch(actionCreators.changeLoading())
+		onFocus(){
+			dispatch(actionCreators.confirm(false))
+		},
+		onActionClick(content){
+			console.log(content)
+			if(!content){
+				return dispatch(actionCreatorsFromToast.openToast({
+          isOpened: true,
+          text: '你忘了填写搜索框！',
+          status: 'error'
+        }))
+			}
+			dispatch(actionCreators.confirm(true))
+			dispatch(actionCreators.changeLoading(true))
 			dispatch(actionCreators.crawler())
 		}
 	}

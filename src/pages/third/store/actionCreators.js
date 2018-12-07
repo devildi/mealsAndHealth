@@ -1,6 +1,8 @@
 import * as constants from './constants'
 import Taro from '@tarojs/taro'
 
+import {actionCreators} from '../../../components/toast/store'
+
 export const crawler = (name) => {
 	return (dispatch) => {
 		Taro.request({
@@ -19,11 +21,17 @@ export const crawler = (name) => {
 						if(i.overNight.length > 0) {overNight.push(i)}
 					})
 					dispatch(changeCityArray(hasGOrD, overNight))
-					dispatch(changeLoading())
+					dispatch(changeLoading(false))
 				}
 			})
 			.catch((err) => {
-				console.log(err)
+				console.log('网络错误：',err)
+				dispatch(actionCreators.openToast({
+						isOpened: true,
+						text: '网络故障，稍后再试！',
+						status: 'error'
+					}))
+				dispatch(changeLoading(false))
 			})
 	}
 }
@@ -32,8 +40,13 @@ export const changeContents = (data) => ({
 	type: constants.CHANGE_CONTENTS,
 	data: data
 })
-export const changeLoading = () => ({
-	type: constants.CHANGE_LOADING
+export const changeLoading = (flag) => ({
+	type: constants.CHANGE_LOADING,
+	data: flag
+})
+export const confirm = (flag) => ({
+	type: constants.CONFIRM,
+	data: flag
 })
 export const changeCityArray = (arr1, arr2) => ({
 	type: constants.CHANGE_CITY_ARRAY,
